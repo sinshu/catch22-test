@@ -10,30 +10,33 @@ pub fn build(b: *std.Build) void {
         .link_libc = true,
     });
 
-    const cflags = &.{"-std=c11"};
-    module.addCSourceFile(.{ .file = b.path("src/butterworth.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/CO_AutoCorr.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/DN_HistogramMode_10.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/DN_HistogramMode_5.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/DN_Mean.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/DN_OutlierInclude.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/DN_Spread_Std.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/FC_LocalSimple.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/fft.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/helper_functions.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/histcounts.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/IN_AutoMutualInfoStats.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/main.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/MD_hrv.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/PD_PeriodicityWang.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/SB_BinaryStats.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/SB_CoarseGrain.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/SB_MotifThree.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/SB_TransitionMatrix.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/SC_FluctAnal.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/splinefit.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/SP_Summaries.c"), .flags = cflags });
-    module.addCSourceFile(.{ .file = b.path("src/stats.c"), .flags = cflags });
+    module.addCSourceFiles(.{
+        .files = &.{
+            "src/butterworth.c",
+            "src/CO_AutoCorr.c",
+            "src/DN_HistogramMode_10.c",
+            "src/DN_HistogramMode_5.c",
+            "src/DN_Mean.c",
+            "src/DN_OutlierInclude.c",
+            "src/DN_Spread_Std.c",
+            "src/FC_LocalSimple.c",
+            "src/fft.c",
+            "src/helper_functions.c",
+            "src/histcounts.c",
+            "src/IN_AutoMutualInfoStats.c",
+            "src/main.c",
+            "src/MD_hrv.c",
+            "src/PD_PeriodicityWang.c",
+            "src/SB_BinaryStats.c",
+            "src/SB_CoarseGrain.c",
+            "src/SB_MotifThree.c",
+            "src/SB_TransitionMatrix.c",
+            "src/SC_FluctAnal.c",
+            "src/splinefit.c",
+            "src/SP_Summaries.c",
+            "src/stats.c",
+        },
+    });
 
     const exe = b.addExecutable(.{
         .name = "catch22",
